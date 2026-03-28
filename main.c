@@ -142,8 +142,8 @@ int main(void) {
   if (vec_result == NULL) goto cleanup_vec_result;
 
   for (size_t i = 0; i < VECTOR_DIMENSIONS; i++) {
-    vec_a[i] = (float)rand() / RAND_MAX;
-    vec_b[i] = (float)rand() / RAND_MAX;
+    vec_a[i] = rand() / (float)RAND_MAX;
+    vec_b[i] = rand() / (float)RAND_MAX;
   }
 
   // Pick a device
