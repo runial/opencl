@@ -7,5 +7,7 @@ project(opencl_test C)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
+find_package(OpenCL REQUIRED)
 
-add_executable (opencl_test main.c)
+add_executable(opencl_test main.c)
+target_link_libraries(opencl_test PRIVATE OpenCL::OpenCL)
