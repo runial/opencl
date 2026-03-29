@@ -4,14 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <stdbool.h>
 #include <math.h>
+#include <time.h>
 
 #include <CL/cl.h>
 
 #define MIN(X, Y) ((X) < (Y) ? (X) : (Y))
 
-const size_t VECTOR_DIMENSIONS = 1024;
+const size_t VECTOR_DIMENSIONS = 100000;
+const size_t VERIFY_STEP = VECTOR_DIMENSIONS / 5;
 const unsigned VECTOR_DIMENSIONS_UNSIGNED = VECTOR_DIMENSIONS;
 const size_t VECTOR_SIZE = sizeof(float) * VECTOR_DIMENSIONS;
 const cl_uint PLATFORM_SEARCH_LIMIT = 1;
@@ -141,6 +142,7 @@ int main(void) {
   float *vec_result = malloc(VECTOR_SIZE);
   if (vec_result == NULL) goto cleanup_vec_result;
 
+  srand(time(NULL));
   for (size_t i = 0; i < VECTOR_DIMENSIONS; i++) {
     vec_a[i] = rand() / (float)RAND_MAX;
     vec_b[i] = rand() / (float)RAND_MAX;
@@ -276,9 +278,9 @@ int main(void) {
   // Verify result
   printf("Verifying results...\n");
   bool are_results_accurate = true;
-  for (size_t i = 0; i < VECTOR_DIMENSIONS; i += 100) {
+  for (size_t i = 0; i < VECTOR_DIMENSIONS; i += VERIFY_STEP) {
     printf("Checking results (%zu/%zu)...\n", i, VECTOR_DIMENSIONS);
-    for (size_t j = i; j < MIN(VECTOR_DIMENSIONS, i+100); j++) {
+    for (size_t j = i; j < MIN(VECTOR_DIMENSIONS, i+VERIFY_STEP); j++) {
       float correct_result = vec_a[j] + vec_b[j];
       float calculated_result = vec_result[j];
       if (fabs(correct_result - calculated_result) > FLOAT_TOLERANCE) {

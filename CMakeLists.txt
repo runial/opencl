@@ -11,3 +11,4 @@ find_package(OpenCL REQUIRED)
 
 add_executable(opencl_test main.c)
 target_link_libraries(opencl_test PRIVATE OpenCL::OpenCL)
+target_compile_options(opencl_test PRIVATE -O3 -march=native)
