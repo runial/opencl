@@ -279,7 +279,7 @@ int main(void) {
       if (fabs(correct_result - calculated_result) > FLOAT_TOLERANCE) {
         are_results_accurate = false;
         fprintf(stderr, "Mismatch found: %f + %f = %f (correct answer: %f)\n",
-                vec_a[j], vec_b[j], vec_result[j], calculated_result);
+                vec_a[j], vec_b[j], calculated_result, correct_result);
       }
     }
   }

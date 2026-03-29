@@ -18,3 +18,9 @@ sudo apt install -y intel-oneapi-runtime-opencl
 ```Bash
 find . -type f \( -name "*.c" -o -name "*.h" \) -exec clang-format -i {} +
 ```
+
+## Check
+
+```Bash
+scan-build cmake --build .
+```
