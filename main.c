@@ -1,8 +1,7 @@
-#include <CL/cl_platform.h>
+// Vector addition with OpenCL
 #define _POSIX_C_SOURCE 200809L
 
 #include <math.h>
-#include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
