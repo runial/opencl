@@ -295,6 +295,7 @@ int main(void) {
 cleanup_result_mismatch:
 cleanup_kernel_read_result:
 cleanup_kernel_vadd_task_wait:
+  clReleaseEvent(kernel_vadd_task);
 cleanup_kernel_vadd_task_enqueue:
 cleanup_set_kernel_arg:
   clReleaseMemObject(device_vec_result);
